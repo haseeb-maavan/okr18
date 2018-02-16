@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as Params from '../config/params';
+import { login } from '../utils/authService';
 import logo from '../images/logo.png';
 import '../App.css';
 
@@ -7,7 +8,7 @@ class LoginPage extends Component {
 
   AuthenticateCredentials(){
     if((Params.username === this.username.value) && (Params.password === this.password.value)){
-      alert('Login Successful');
+      login();
       this.props.history.push('/home');
     }
   }

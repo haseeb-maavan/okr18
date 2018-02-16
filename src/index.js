@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, Route, Switch } from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect  } from 'react-router-dom';
+import { isLoggedIn } from './utils/authService';
 import './index.css';
 import Home from './components/Home';
 import App from './App';
@@ -9,8 +10,15 @@ import App from './App';
 ReactDOM.render(
       <BrowserRouter>
         <Switch>
-          <Route path='/' exact component={App} />
-          <Route path='/home' exact component={Home} />
+
+          <Route path='/' exact render={(props)=>(
+            isLoggedIn() ?  (<Redirect to = "/home" />)  : <App {...props} />
+          )}/>
+
+          <Route path='/home' exact render={(props)=>(
+            isLoggedIn() ?  (<Home {...props} />)  : (<Redirect to = "/" />)
+          )}/>
+
         </Switch>
 
       </BrowserRouter>

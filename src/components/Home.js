@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import * as Params from '../config/params';
+import Header from './Header';
 import '../App.css';
 
 class LoginPage extends Component {
 
   render() {
     return (
-      <div>This is Home Page</div>
+      <div>
+        <Header history = {this.props.history}/>
+        <div><h1>You are on Home Page</h1></div>
+      </div>
     );
   }
 }
