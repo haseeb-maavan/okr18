@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Header from './Header';
+import UserLogs from './UserLogs';
 import '../App.css';
+
 
 class LoginPage extends Component {
 
@@ -9,6 +11,7 @@ class LoginPage extends Component {
       <div>
         <Header history = {this.props.history}/>
         <div><h1>You are on Home Page</h1></div>
+        <UserLogs></UserLogs>
       </div>
     );
   }

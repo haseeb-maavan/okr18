@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LoginPage from './components/LoginPage';
-//import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 class App extends Component {

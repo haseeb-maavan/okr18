@@ -5,7 +5,6 @@ import { isLoggedIn } from './utils/authService';
 import './index.css';
 import Home from './components/Home';
 import App from './App';
-//import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
       <BrowserRouter>
