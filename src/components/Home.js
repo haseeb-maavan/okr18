@@ -10,7 +10,6 @@ class LoginPage extends Component {
     return (
       <div>
         <Header history = {this.props.history}/>
-        <div><h1>You are on Home Page</h1></div>
         <UserLogs></UserLogs>
       </div>
     );

@@ -154,3 +154,20 @@ body {
     display: block;
     padding:5px 15px;
 }
+
+/*********************home (logs) page*/
+.content{
+    padding: 50px 58px;
+}
+.content-h{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.log-row{
+    padding: 5px 0px;
+}
+.log-row .name{margin: 0px 10px 0px 0px;}
+/********************* common classes **************/
+.red{color: red}
+.green{color: green}
+
