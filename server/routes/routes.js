@@ -5,7 +5,7 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/okr18";
 
-router.all('/*', function (req, res, next){
+router.all('/*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
@@ -13,13 +13,14 @@ router.all('/*', function (req, res, next){
     next();
 });
 
-MongoClient.connect(url, function(err,db){
+MongoClient.connect(url, function (err, db) {
+    db.db('okr18');
 
-  router.get('/index', function (req, res) {
-        db.collection('logs').find({}).toArray(function(err, docs){
-          res.send(docs);
+    router.get('/index', function (req, res) {
+        db.collection('logs').find({}).toArray(function (err, docs) {
+            res.send(docs);
         });
-  });
+    });
 });
 
 router.get('/', function (req, res) {
