@@ -17,7 +17,7 @@ ReactDOM.render(
           <Route path='/home' exact render={(props)=>(
             isLoggedIn() ?  (<Home {...props} />)  : (<Redirect to = "/" />)
           )}/>
-
+  
         </Switch>
 
       </BrowserRouter>
