@@ -17,6 +17,15 @@ class UserLogs extends Component {
       const logs = res.data;
       this.setState({logs});
     });
+    
+    axios.get(Params.apiurl + 'employeeactivity/' + this.props.clientId).then(res => {
+      console.log(res.data);
+     // this.setState({logs});
+    });
+  }
+  
+  getUserName(id) {
+      return 'helo name- '+id;
   }
   
   renderStatus(status) {
@@ -55,7 +64,7 @@ class UserLogs extends Component {
              { this.state.logs.map((item, index) => (
                  
                 <tr key = {item.status + item.date}>
-                    <td key = {item.userId}>{item.userId}</td>
+                    <td key = {item.userId}>{this.getUserName(item.userId)}</td>
                     <td>{this.renderStatus(item.status)}</td>
                     <td>{moment(item.date).format('hh:mm A')}</td>
                     <td>{moment(item.date).format('M/D/Y')}</td>
