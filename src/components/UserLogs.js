@@ -6,38 +6,24 @@ import '../App.css';
 
 class UserLogs extends Component {
 
- 
   state = {
-    logs: [
-      {
-        "_id" : "5a8c2c13b1c36df5bf56111c",
-        "userId" : "5a8c25a7b1c36df5bf561071",
-        "status" : "checkedin",
-        "date" : "2018-02-22T11:51:31.985Z"
-      },
-      {
-        "_id" : "5a8c2cfcb1c36df5bf561144",
-        "userId" : "5a8c2c66b1c36df5bf56112e",
-        "status" : "checkedout",
-        "date" : "2018-02-22T11:00:31.985Z"
-      }
-    ]
+    logs: []
   }
 
   componentDidMount() {
     
       axios.get(Params.apiurl + 'employeeactivity/' + this.props.clientId).then(res => {
       console.log(res.data);
-     // const logs = res.data;
-     // this.setState({logs});
+      const logs = res.data;
+      this.setState({logs});
     });
   }
   
   renderStatus(status) {
     if (status === 'checkedin') {
-      return <span className="green"> Checked in </span>;
+      return <span className="green"> Checked In </span>;
     } else {
-      return <span className="red"> Checked out </span>;
+      return <span className="red"> Checked Out </span>;
     }
   }
   
@@ -57,7 +43,7 @@ class UserLogs extends Component {
         <table className="table table-hover">
           <thead>
             <tr>
-              <th>User ID</th>
+              <th>User Name</th>
               <th>Status</th>
               <th>Time</th>
               <th>Date</th>
