@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import axios from "axios";
-import moment from "moment";
+import axios from 'axios';
+import moment from 'moment';
 import * as Params from '../config/params';
 import '../App.css';
 
 class UserLogs extends Component {
 
+ 
   state = {
     logs: [
       {
@@ -24,39 +25,67 @@ class UserLogs extends Component {
   }
 
   componentDidMount() {
-    axios.get(Params.apiurl + 'index').then(res => {
+    
+      axios.get(Params.apiurl + 'employeeactivity/' + this.props.clientId).then(res => {
       console.log(res.data);
-      const logs = res.data;
-      this.setState({logs});
+     // const logs = res.data;
+     // this.setState({logs});
     });
   }
+  
   renderStatus(status) {
-    if (status == 'checkedin') {
+    if (status === 'checkedin') {
       return <span className="green"> Checked in </span>;
     } else {
       return <span className="red"> Checked out </span>;
     }
   }
+  
+  editRecord(row , e){
+      this.props.history.push({
+        action : 'GET',
+        search: '?tokenID='+ row._id,
+        pathname: '/edit-record',
+        state: { recordId: row._id, clientId: row.userId, status: row.status, date: row.date }
+      });
+  }
 
   render() {
     return (
-      <div className="container ">
-      <div className='content'>
-      <div className="content-h">
-      <h2>User Activity</h2>
-      </div>
-      { this.state.logs.map((item, index) => (
-        <div key={index + item._id + index.userId + item.status} className="log-row">
-        <span  key={index + item.userId} className='name'> {item.userId}</span>
-        {this.renderStatus(item.status)} at
-        <span key={index + item.date + 1} className='time'> {moment(item.date).format('hh:mm A')} </span>
-        <span key={index + item.date} className='date'> on {moment(item.date).format('M/D/Y')} </span>
+       <div className="container" style={{marginTop: '20px'}} >
+        <h2 style={{marginBottom: '22px'}}>User Activity</h2>
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Status</th>
+              <th>Time</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+          </thead>
+  
+          <tbody>
+             { this.state.logs.map((item, index) => (
+                 
+                <tr key = {item.status + item.date}>
+                    <td key = {item.userId}>{item.userId}</td>
+                    <td>{this.renderStatus(item.status)}</td>
+                    <td>{moment(item.date).format('hh:mm A')}</td>
+                    <td>{moment(item.date).format('M/D/Y')}</td>
+                    <td>
+                        <button type="button" className="btn btn-default btn-sm" onClick={this.editRecord.bind(this,item)}>
+                            <span className="glyphicon glyphicon-edit"></span> Edit
+                        </button>
+                    </td>
+                </tr>
+      
+             ))}
+
+          </tbody>
+ 
+        </table>
         </div>
-
-      ))}
-
-      </div>
-      </div>
     );
   }
 }
