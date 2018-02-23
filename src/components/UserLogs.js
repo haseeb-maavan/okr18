@@ -33,9 +33,9 @@ class UserLogs extends Component {
      // this.setState({logs});
     });
     
-    axios.get(Params.apiurl + 'employeeactivity/' + this.props.clientId).then(res => {
-      console.log(res.data);
-     // this.setState({logs});
+    axios.get(Params.apiurl + 'employees').then(res => {
+      this.setState({['users']:res.data});
+      console.log(this.state);
     });
   }
   
