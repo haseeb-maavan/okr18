@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import '../App.css';
 
-class LoginPage extends Component {
+class Home extends Component {
 
   render() {
     return (
@@ -13,4 +13,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+export default Home;

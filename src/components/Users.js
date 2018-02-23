@@ -50,7 +50,7 @@ class Users extends Component {
                  
                 <tr>
                     <td><a href='' onClick = {this.gotoDetail.bind(this, item._id)}>{item.name}</a></td>
-                    <td>{'None'}</td>
+                    <td>{(item.check_in)? 'Checked In': 'Checked Out'}</td>
                     <td>at {moment(item.updated_at).format('hh:mm A')} on {moment(item.updated_at).format('M/D/Y')}</td>
                 </tr>
       
