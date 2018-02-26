@@ -9,7 +9,7 @@ class Detail extends Component {
     return (
         <div>
             <Header history = {this.props.history}/>
-            <UserLogs history = {this.props.history} clientId = {this.props.location.state.clientId}></UserLogs>
+            <UserLogs history = {this.props.history} clientId = {this.props.location.state.clientId} clientName = {this.props.location.state.clientName}></UserLogs>
         </div>
     );
   }

@@ -19,13 +19,13 @@ class Users extends Component {
     });
   }
   
-  gotoDetail(clientId , e){
+  gotoDetail(item , e){
       
        this.props.history.push({
         action : 'GET',
-        search: "?clientID=" + clientId,
+        search: "?clientID=" + item._id,
         pathname: '/detail',
-        state: { clientId: clientId }
+        state: { clientId: item._id, clientName: item.name }
       });
         
   }
@@ -49,9 +49,9 @@ class Users extends Component {
                     { this.state.users.map((item, index) => (
                  
                 <tr>
-                    <td><a href='' onClick = {this.gotoDetail.bind(this, item._id)}>{item.name}</a></td>
+                    <td><a href='javascript:;' onClick = {this.gotoDetail.bind(this, item)}>{item.name}</a></td>
                     <td>{(item.check_in)? 'Checked In': 'Checked Out'}</td>
-                    <td>at {moment(item.updated_at).format('hh:mm A')} on {moment(item.updated_at).format('M/D/Y')}</td>
+                    <td>at {moment(item.log_date).format('hh:mm A')} on {moment(item.log_date).format('M/D/Y')}</td>
                 </tr>
       
              ))}
