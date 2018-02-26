@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Detail from './components/Detail';
 import EditRecord from './components/EditRecord';
 import Users from './components/Users';
+import Reports from './components/Reports';
 import App from './App';
 
 ReactDOM.render(
@@ -31,6 +32,10 @@ ReactDOM.render(
           
            <Route path='/users' exact render={(props)=>(
             isLoggedIn() ?  (<Users {...props} />)  : (<Redirect to = "/" />)
+          )}/>
+  
+           <Route path='/reports' exact render={(props)=>(
+            isLoggedIn() ?  (<Reports {...props} />)  : (<Redirect to = "/" />)
           )}/>
       
 
