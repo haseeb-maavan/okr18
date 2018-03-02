@@ -56,7 +56,7 @@ class Home extends Component {
         var searchQuery = query.toLowerCase();
         var displayedCheckedInList = this.checkedIn.filter(function (el) {
             var name = el.name.toLowerCase();
-            return name.indexOf(searchQuery) !== -1 || el.check_in.toLowerCase().indexOf(searchQuery) !== -1;
+            return name.indexOf(searchQuery) !== -1 || el.check_in.toString().toLowerCase().indexOf(searchQuery) !== -1;
         });
         var displayedCheckedOutList = this.checkedOut.filter(function (el) {
             var name = el.name.toLowerCase();
