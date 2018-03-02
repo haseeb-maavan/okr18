@@ -14,7 +14,6 @@ class Users extends Component {
   componentDidMount() {
       axios.get(Params.apiurl + 'employees').then(res => {
       this.setState({users:res.data});
-      console.log(res.data);
      
     });
   }
@@ -51,7 +50,7 @@ class Users extends Component {
                 <tr>
                     <td><a href='javascript:;' onClick = {this.gotoDetail.bind(this, item)}>{item.name}</a></td>
                     <td>{(item.check_in)? 'Checked In': 'Checked Out'}</td>
-                    <td>at {moment(item.log_date).format('hh:mm A')} on {moment(item.log_date).format('M/D/Y')}</td>
+                    <td>at {moment(item.log_date['date']).format('hh:mm A')} on {moment(item.log_date['date']).format('M/D/Y')}</td>
                 </tr>
       
              ))}

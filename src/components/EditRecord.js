@@ -11,11 +11,9 @@ class EditRecord extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
 
         var new_date = this.props.location.state.date.split(' ');
         new_date = new_date[1].split(':');
-        var format = new_date[2];
         
         this.state = {
               startDate: moment(this.props.location.state.date),
@@ -62,22 +60,18 @@ class EditRecord extends Component {
       
       console.log(this.props.location.state.recordId+'&date='+moment(this.state.startDate).format('Y-M-D')+' '+this.state.hours+':'+this.state.minutes+' '+this.state.format);
       axios.get(Params.apiurl + 'log/update?id='+this.props.location.state.recordId+'&date='+moment(this.state.startDate).format('Y-M-D')+' '+this.state.hours+':'+this.state.minutes+' '+this.state.format).then(res => {
-        if(res.data.msgType === 'SUC'){
-            alert('Record updated successfully!');
-            this.props.history.push('/users');
-        }
-        else
-        {
-            alert('Something went wrong!');
-        }
-       });
-      
-      
+            if(res.data.msgType === 'SUC'){
+                 this.props.history.push('/users');   
+            }
+            else{
+               alert('Something went wrong! Please try again later.');
+            }
+       }); 
   }
   
   render() {
     return (
-        <div>    
+        <div>
             <Header history = {this.props.history}/>
             
             <div className="container" style={{marginTop: '20px'}} >
@@ -131,13 +125,13 @@ class EditRecord extends Component {
                                 <div>
                                     <select onChange={this.handleHours.bind(this)} value={this.state.hours}>
                                         {Array.apply(1, Array(12)).map(function (x, i) {
-                                                 return <option>{i+1}</option>
+                                                 return <option>{ i+1 }</option>
                                           })}
                                     </select>
                                     
                                     <select style={{marginLeft:'20px'}} onChange={this.handleMinutes.bind(this)} value={this.state.minutes}>
                                          {Array.apply(0, Array(60)).map(function (x, i) {
-                                                 return <option>{i}</option>
+                                                 return <option>{((i)<10)? ('0'+ i): i}</option>
                                           })}
                                     </select>
                             
