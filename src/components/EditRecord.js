@@ -61,7 +61,12 @@ class EditRecord extends Component {
       console.log(this.props.location.state.recordId+'&date='+moment(this.state.startDate).format('Y-M-D')+' '+this.state.hours+':'+this.state.minutes+' '+this.state.format);
       axios.get(Params.apiurl + 'log/update?id='+this.props.location.state.recordId+'&date='+moment(this.state.startDate).format('Y-M-D')+' '+this.state.hours+':'+this.state.minutes+' '+this.state.format).then(res => {
             if(res.data.msgType === 'SUC'){
-                 this.props.history.push('/users');   
+                this.props.history.push({
+                   action: 'GET',
+                   search: "?clientID=" + this.props.location.state.clientId,
+                   pathname: '/detail',
+                   state: { clientId: this.props.location.state.clientId, clientName: this.props.location.state.clientName }
+               });   
             }
             else{
                alert('Something went wrong! Please try again later.');

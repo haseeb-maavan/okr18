@@ -30,12 +30,12 @@ class Home extends Component {
         });
     }
 
-    gotoDetail(clientId, e) {
+    gotoDetail(item, e) {
         this.props.history.push({
             action: 'GET',
-            search: "?clientID=" + clientId,
+            search: "?clientID=" + item._id,
             pathname: '/detail',
-            state: {clientId: clientId}
+            state: { clientId: item._id, clientName: item.name }
         });
     }
 
@@ -89,14 +89,14 @@ class Home extends Component {
                                 <tbody>
                                     { this.state.checkedIn.map((item, index) => (
                                                             <tr key = {item._id}>
-                                                                <td key = {item._id + item.name}><a href='' onClick = {this.gotoDetail.bind(this, item._id)}>{item.name}</a></td>
+                                                                <td key = {item._id + item.name}><a href='' onClick = {this.gotoDetail.bind(this, item)}>{item.name}</a></td>
                                                                 <td className='green'>Checked In</td>
                                                             </tr>
                                                                         ))}
                 
                                     { this.state.checkedOut.map((item, index) => (
                                                             <tr key = {item._id}>
-                                                                <td key = {item._id + item.name}><a href='' onClick = {this.gotoDetail.bind(this, item._id)}>{item.name}</a></td>
+                                                                <td key = {item._id + item.name}><a href='' onClick = {this.gotoDetail.bind(this, item)}>{item.name}</a></td>
                                                                 <td className='red'>Checked Out</td>
                                                             </tr>
                                                                         ))}
